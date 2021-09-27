@@ -13,14 +13,25 @@ hiddenUntilNext.style.display = "none";
 hiddenUntilCheck.style.display = "none";
 
 nextButton.addEventListener("click", () => {
-    hiddenUntilNext.style.display = "block";
-    nextButton.style.display = "none";
+    if (billAmount.value) {
+        if (billAmount.value > 0) {
+            hideMessage();
+            hiddenUntilNext.style.display = "block";
+            nextButton.style.display = "none";
+        } else {
+            showMessage("Enter a valid bill amount to proceed")
+        }
+
+    } else {
+        showMessage("Enter a bill amount to proceed");
+    }
+
 })
 
 checkButton.addEventListener("click", function validateBillandCashAmount() {
 
     hideMessage();
-    if (!isNaN(billAmount.value) && !isNaN(cashGiven.value)) {
+    if ((!isNaN(billAmount.value) && !isNaN(cashGiven.value)) && (billAmount.value > 0 && cashGiven.value > 0)) {
         hiddenUntilCheck.style.display = "none";
         if (billAmount.value > 0) {
             hiddenUntilCheck.style.display = "none";
@@ -37,7 +48,7 @@ checkButton.addEventListener("click", function validateBillandCashAmount() {
         }
     }
     else {
-        showMessage("Enter a number");
+        showMessage("Enter a valid value");
     }
 });
 
