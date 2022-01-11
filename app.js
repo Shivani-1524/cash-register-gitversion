@@ -28,7 +28,7 @@ nextButton.addEventListener("click", () => {
 
 })
 
-checkButton.addEventListener("click", function validateBillandCashAmount() {
+checkButton.addEventListener("click", () => {
 
     hideMessage();
     if ((!isNaN(billAmount.value) && !isNaN(cashGiven.value)) && (billAmount.value > 0 && cashGiven.value > 0)) {
@@ -52,16 +52,14 @@ checkButton.addEventListener("click", function validateBillandCashAmount() {
     }
 });
 
-function hideMessage() {
-    message.style.display = "none";
-}
+const hideMessage = () => message.style.display = "none";
 
-function showMessage(messageText) {
+const showMessage = (messageText) => {
     message.style.display = "block";
     message.innerText = messageText;
 }
 
-function calculateChange(amount) {
+const calculateChange = (amount) => {
     for (let i = 0; i < availableValues.length; i++) {
         const numberOfNotes = Math.trunc(amount / availableValues[i]);
         amount %= availableValues[i];
